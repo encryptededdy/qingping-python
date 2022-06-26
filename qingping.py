@@ -27,7 +27,7 @@ def get_access_token():
         "Authorization": f"Basic {auth_string}"
     }
 
-    response = requests.request("POST", url, data=payload, headers=headers)
+    response = requests.request("POST", url, data=payload, headers=headers, timeout=5)
     parsed_response = json.loads(response.content)
     access_token = parsed_response["access_token"]
     expiry = parsed_response["expires_in"] + int(time.time()) # expiry time
@@ -42,7 +42,7 @@ def get_device_info():
     url = "https://apis.cleargrass.com/v1/apis/devices"
     querystring = {"timestamp":int(time.time()*1000)}
     headers = {"Authorization": f"Bearer {get_access_token()}"}
-    response = requests.request("GET", url, headers=headers, params=querystring)
+    response = requests.request("GET", url, headers=headers, params=querystring, timeout=5)
     parsed_response = json.loads(response.content)
     return {e["info"]["name"]:parse_data(e["data"]) for e in parsed_response["devices"]}
 
