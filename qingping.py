@@ -42,3 +42,17 @@ def get_device_info():
     response = requests.request("GET", url, headers=headers, params=querystring)
     parsed_response = json.loads(response.content)
     return {e["info"]["name"]:parse_data(e["data"]) for e in parsed_response["devices"]}
+
+# Pretty-print the device info for an air quality monitor
+def airquality_pretty(device_info, markdown = False):
+    temp = device_info["temperature"]
+    humidity = device_info["humidity"]
+    tvoc = device_info["tvoc"]/1000 # ppm
+    co2 = device_info["co2"]
+    pm25 = device_info["pm25"]
+    pm10 = device_info["pm10"]
+
+    if markdown:
+        return f"*Temperature:* {temp:.1f}°C\n*Humidity:* {humidity:.1f}%\n*tVOC:* {tvoc:.3f}ppm\n*CO₂:* {co2}ppm\n*PM2.5:* {pm25}µg/m3\n*PM10*: {pm10}µg/m3"
+    else:
+        return f"Temperature: {temp:.1f}°C\nHumidity: {humidity:.1f}%\ntVOC: {tvoc:.3f}ppm\nCO₂: {co2}ppm\nPM2.5: {pm25}µg/m3\nPM10: {pm10}µg/m3"
