@@ -14,9 +14,11 @@ def get_access_token():
     global expiry
     # If current token is valid, return that
     if (expiry > int(time.time())) and access_token:
+        print("Using cached access token")
         return access_token
 
     # If current token is invalid...
+    print("Using getting new access token")
     url = "https://oauth.cleargrass.com/oauth2/token"
     auth_string = base64.b64encode((config["appKey"] + ":" + config["appSecret"]).encode('ascii')).decode('ascii')
     payload = "grant_type=client_credentials&scope=device_full_access"
@@ -29,6 +31,7 @@ def get_access_token():
     parsed_response = json.loads(response.content)
     access_token = parsed_response["access_token"]
     expiry = parsed_response["expires_in"] + int(time.time()) # expiry time
+    print("Got access token")
     return access_token
 
 def parse_data(data):
