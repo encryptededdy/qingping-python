@@ -56,6 +56,6 @@ def airquality_pretty(device_info, markdown = False):
     pm10 = device_info["pm10"]
 
     if markdown:
-        return f"*Temperature:* {temp:.1f}°C\n*Humidity:* {humidity:.1f}%\n*tVOC:* {tvoc:.3f}ppm\n*CO₂:* {co2}ppm\n*PM2.5:* {pm25}µg/m3\n*PM10*: {pm10}µg/m3"
+        return f"*Temperature:* {temp:.1f}°C\n*Humidity:* {humidity:.1f}%\n*tVOC:* {tvoc:.3f}ppm\n*CO₂:* {co2}ppm\n*PM2.5:* {pm25}µg/m³\n*PM10*: {pm10}µg/m³"
     else:
-        return f"Temperature: {temp:.1f}°C\nHumidity: {humidity:.1f}%\ntVOC: {tvoc:.3f}ppm\nCO₂: {co2}ppm\nPM2.5: {pm25}µg/m3\nPM10: {pm10}µg/m3"
+        return f"Temperature: {temp:.1f}°C\nHumidity: {humidity:.1f}%\ntVOC: {tvoc:.3f}ppm\nCO₂: {co2}ppm\nPM2.5: {pm25}µg/m³\nPM10: {pm10}µg/m³"
