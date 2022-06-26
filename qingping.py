@@ -4,7 +4,7 @@ import time
 import base64
 
 # e.g. {"appKey" : "xxxx", "appSecret" : "xxxxx" } from https://developer.qingping.co/personal/permissionApply
-config = json.load(open('config.json', 'r'))
+config = json.load(open('qp_config.json', 'r'))
 
 access_token = ""
 expiry = 0
